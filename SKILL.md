@@ -7,6 +7,16 @@ description: Normalize, verify, and complete BibTeX references for computer scie
 
 Normalize BibTeX references according to the target publication style. Default to IEEE style unless the entry clearly belongs to ACM or the user specifies ACM Reference Format. When the user provides only partial metadata, search reliable sources when network access is available, reconstruct the BibTeX entry from verified metadata, then normalize it.
 
+## Style Precedence
+
+Apply rules in this order:
+
+1. The user's explicit target venue, template, or advisor-provided guide.
+2. Official publisher metadata and style guides.
+3. This skill's default rules.
+
+If the user asks to follow the Shuping Dang "Citing References in Academic Papers" guide, apply the guide-specific choices in this file, including author truncation after more than 5 authors, `UK` for United Kingdom conference locations, and `United Arab Emirates` for UAE conference locations. Otherwise, use the default IEEE/ACM behavior below.
+
 ## Output Requirements
 
 Always provide:
@@ -28,9 +38,12 @@ Use this workflow when the user provides only a title, DOI, arXiv ID, partial au
    - Exact title: search the exact title in quotation marks first.
    - Partial title plus authors/year/venue: search using the most specific combination.
 2. Prefer authoritative sources in this order:
+   - For IEEE journal or conference papers, IEEE Xplore original BibTeX export when available.
    - DOI registration page or Crossref metadata.
-   - Publisher or digital library page, especially IEEE Xplore, ACM Digital Library, SpringerLink, Elsevier ScienceDirect, Wiley, USENIX, ACL Anthology, or arXiv.
+   - Publisher or digital library page, especially ACM Digital Library, SpringerLink, Elsevier ScienceDirect, Wiley, USENIX, ACL Anthology, or arXiv.
    - DBLP for computer science venue, author, year, and DOI cross-checking.
+   - Google Scholar BibTeX for papers not available from IEEE Xplore or the publisher.
+   - Google Books or Google Scholar for textbooks.
    - Semantic Scholar, OpenAlex, Google Scholar snippets, or general web search only as secondary evidence.
 3. If an official BibTeX export exists, use it as the base entry, then apply this skill's normalization rules.
 4. If no BibTeX export exists, construct the entry from verified metadata only.
@@ -47,6 +60,7 @@ For title-only input, the expected behavior is: search the exact title, identify
 - Ensure BibTeX keys are unique.
 - Use BibTeX page ranges with double hyphens: `pages={18378--18391}`.
 - Prefer verified metadata from DOI pages, IEEE Xplore, ACM Digital Library, publisher pages, journal websites, conference websites, DBLP, Crossref, Semantic Scholar, OpenAlex, or arXiv.
+- For IEEE submissions, prefer BibTeX exported from IEEE Xplore for IEEE journal and conference papers. For non-IEEE papers, use publisher metadata first and Google Scholar BibTeX only when stronger sources are unavailable. For textbooks, Google Books or publisher pages may be useful sources.
 
 ## Title Format
 
@@ -58,6 +72,7 @@ Use sentence case.
   `title={{M}oTiCPS: {E}nergy optimization on multi-objective task scheduling in {IoT}-integrated cyber-physical systems}`
 - Protect acronyms, proper nouns, standards, datasets, algorithms, protocols, and brand names:
   `{Internet of Things}`, `{IoT}`, `{Monte Carlo}`, `{IEEE}`, `{ACM}`, `{Wi-Fi}`, `{5G}`, `{COVID-19}`.
+- Also protect communication and mathematics terms that must retain capitalization, such as `{2G}`, `{3G}`, `{4G}`, `{5G}`, `{6G}`, `{WLAN}`, `{Bluetooth}`, `{LTE}`, `{Internet}`, `{MIMO}`, `{MISO}`, `{SIMO}`, `{OFDM}`, `{OFDMA}`, `{NOMA}`, `{RSMA}`, `{mmWave}`, `{RF}`, `{CSI}`, `{RSSI}`, `{RIS}`, `{IRS}`, `{Gauss}`, `{Gaussian}`, `{Markov}`, `{Markovian}`, `{Rayleigh}`, `{Rice}`, `{Rician}`, `{Nakagami}`, `{FedAvg}`, and `{Hybrid-FL}`.
 - Do not convert ordinary technical phrases to title case. Usually keep phrases such as `federated learning`, `multi-task learning`, and `cyber-physical systems` lowercase unless they are part of a proper noun.
 - Do not capitalize every word.
 
@@ -67,7 +82,8 @@ For IEEE style:
 
 - If there are more than 6 authors, keep the first author and replace the rest with `and others`.
 - If there are 6 or fewer authors, keep all authors.
-- Do not use "more than 5 authors" as the IEEE truncation rule.
+- Do not use "more than 5 authors" as the default IEEE truncation rule unless the user explicitly asks to follow the advisor/PDF guide that uses that threshold.
+- If following the Shuping Dang guide, truncate when the number of authors is greater than 5.
 
 Example:
 
@@ -101,6 +117,8 @@ Use month abbreviations:
 Jan., Feb., Mar., Apr., May, June, July, Aug., Sept., Oct., Nov., Dec.
 ```
 
+The advisor/PDF guide also permits `Jun.` for June, `Jul.` for July, and `Sep.` for September. Keep one style consistent within the same bibliography.
+
 ### IEEE Access
 
 For `IEEE Access` entries:
@@ -127,6 +145,32 @@ Example:
 }
 ```
 
+### IEEE Early Access Journal Articles
+
+For IEEE early-access journal articles that do not yet have final volume, issue, page, month, or year metadata:
+
+- Prefer the original IEEE Xplore BibTeX export.
+- Leave `year`, `volume`, `number`, and `pages` blank if the target template expects those fields to exist; otherwise remove empty fields only if the target style allows it.
+- Do not invent final volume, issue, page, month, or year values.
+- Add the early access date and DOI in `note`, using the Date of Publication from IEEE Xplore.
+- Keep the `doi` field as well when present.
+
+Example:
+
+```bibtex
+@ARTICLE{11409469,
+  author={Li, Taoshen and Dang, Shuping and Ge, Zhihui and Xu, Yihang and Zhang, Zhenrong},
+  journal={IEEE Trans. Veh. Technol.},
+  title={{C}ramer-von {M}ises criterion based parametric mapping for channel model substitution},
+  year={},
+  volume={},
+  number={},
+  pages={},
+  note={early access, Feb. 24, 2026, doi: 10.1109/TVT.2026.3667726},
+  doi={10.1109/TVT.2026.3667726}
+}
+```
+
 ## IEEE Conference Papers
 
 Use IEEE-style abbreviated `booktitle` when appropriate:
@@ -135,7 +179,11 @@ Use IEEE-style abbreviated `booktitle` when appropriate:
 booktitle={Proc. IEEE Int. Conf. Blockchain (Blockchain)}
 ```
 
-Do not mechanically delete the conference year or edition number. Decide based on the official conference name, IEEE Xplore page, and target template.
+Do not mechanically delete the conference year or edition number. Decide based on the official conference name, IEEE Xplore page, target template, and how reputable IEEE journals cite papers from that conference. The year may appear after `Proc.` when that is the established proceedings form, for example:
+
+```bibtex
+booktitle={Proc. 2024 IEEE Int. Conf. Commun. Control Comput. Technol. Smart Grids (SmartGridComm)}
+```
 
 If the conference month is reliable, add:
 
@@ -152,6 +200,8 @@ Apply location format in this order:
 - United Arab Emirates: `address={City, U.A.E.}`
 - Other countries: `address={City, Country}`
 
+If following the Shuping Dang guide, use `UK` rather than `U.K.` and `United Arab Emirates` rather than `U.A.E.` or `UAE`.
+
 Examples:
 
 ```bibtex
@@ -159,6 +209,8 @@ address={Los Angeles, CA, USA}
 address={London, U.K.}
 address={Dubai, U.A.E.}
 address={Rhodes, Greece}
+address={London, UK}
+address={Dubai, United Arab Emirates}
 ```
 
 Keep `pages` and `doi`.
@@ -200,6 +252,8 @@ Use ACM Digital Library metadata, ACM templates, or the venue-provided `.bst` / 
 
 ## arXiv and Preprints
 
+Before citing a preprint, check whether a formally published or peer-reviewed version exists. If it exists and is the version the paper should cite, cite the published version instead of the preprint.
+
 Prefer `@misc`, or `@preprint` if the target template supports it.
 
 Do not write arXiv entries as:
@@ -222,6 +276,23 @@ Preferred format:
 }
 ```
 
+For arXiv entries, verify the version and access/submission date from the arXiv page. If following a guide or venue that asks for access month/year, include the access information in the target-supported field, usually `note`.
+
+## Textbooks
+
+For textbooks:
+
+- Prefer publisher pages, Google Books, or Google Scholar BibTeX when official metadata is unavailable.
+- Keep book metadata complete: author/editor, title, edition, publisher, address/location when available, year, ISBN or DOI if relevant.
+- When citing a specific chapter, equation, theorem, or page in LaTeX, put the locator in the citation command rather than modifying the BibTeX entry.
+
+Examples:
+
+```tex
+\cite[Ch. 2]{cover2012elements}
+\cite[Eq. (9.17)]{cover2012elements}
+```
+
 ## Verification Checklist
 
 For each entry, verify when possible:
@@ -233,5 +304,7 @@ For each entry, verify when possible:
 5. DOI or arXiv ID.
 6. Conference location.
 7. Whether the selected record is unambiguous when the input was partial.
+8. Whether a preprint has a formally published version.
+9. Whether an IEEE article is early access and lacks final volume/issue/page metadata.
 
 If a field cannot be verified, preserve the original value when reasonable and mention `需核实` in the change note.
