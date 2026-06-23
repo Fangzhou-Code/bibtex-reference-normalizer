@@ -1,11 +1,11 @@
 ---
 name: bibtex-reference-normalizer
-description: Normalize BibTeX references for computer science and communications papers, especially IEEE-style journal/conference references, IEEE Access entries, ACM references, and arXiv preprints. Use when the user asks to modify, standardize, verify, or polish BibTeX references, citation formats, IEEE references, ACM references, conference locations, journal abbreviations, author truncation, title capitalization, or arXiv entries.
+description: Normalize, verify, and complete BibTeX references for computer science and communications papers, especially IEEE-style journal/conference references, IEEE Access entries, ACM references, and arXiv preprints. Use when the user asks to modify, standardize, verify, polish, or complete BibTeX references from partial metadata such as title, DOI, arXiv ID, author names, venue names, or incomplete citation text.
 ---
 
 # BibTeX Reference Normalizer
 
-Normalize BibTeX references according to the target publication style. Default to IEEE style unless the entry clearly belongs to ACM or the user specifies ACM Reference Format.
+Normalize BibTeX references according to the target publication style. Default to IEEE style unless the entry clearly belongs to ACM or the user specifies ACM Reference Format. When the user provides only partial metadata, search reliable sources when network access is available, reconstruct the BibTeX entry from verified metadata, then normalize it.
 
 ## Output Requirements
 
@@ -14,8 +14,31 @@ Always provide:
 1. The corrected complete BibTeX entries.
 2. A short change note for each entry.
 3. `需核实` for any field that cannot be verified reliably.
+4. Source hints used for completion when metadata was searched or inferred, such as DOI, IEEE Xplore, ACM Digital Library, arXiv, DBLP, Crossref, Semantic Scholar, publisher page, or official conference page.
 
 Do not invent months, locations, pages, volume, issue number, article number, or DOI.
+
+## Metadata Completion Workflow
+
+Use this workflow when the user provides only a title, DOI, arXiv ID, partial author list, venue name, screenshot text, or incomplete citation.
+
+1. Identify the strongest lookup key:
+   - DOI: resolve the DOI first.
+   - arXiv ID: query arXiv or the arXiv landing page first.
+   - Exact title: search the exact title in quotation marks first.
+   - Partial title plus authors/year/venue: search using the most specific combination.
+2. Prefer authoritative sources in this order:
+   - DOI registration page or Crossref metadata.
+   - Publisher or digital library page, especially IEEE Xplore, ACM Digital Library, SpringerLink, Elsevier ScienceDirect, Wiley, USENIX, ACL Anthology, or arXiv.
+   - DBLP for computer science venue, author, year, and DOI cross-checking.
+   - Semantic Scholar, OpenAlex, Google Scholar snippets, or general web search only as secondary evidence.
+3. If an official BibTeX export exists, use it as the base entry, then apply this skill's normalization rules.
+4. If no BibTeX export exists, construct the entry from verified metadata only.
+5. Treat a match as reliable only when the title matches exactly or near-exactly and at least one additional field agrees, such as author, year, venue, DOI, or arXiv ID.
+6. If multiple plausible records exist, do not guess. Ask the user to choose or mark ambiguous fields as `需核实`.
+7. If the agent has no internet access or cannot verify a field, preserve the provided value when reasonable and mark missing or uncertain fields as `需核实`.
+
+For title-only input, the expected behavior is: search the exact title, identify the correct publication record, collect authors, title, venue, year, volume/number/pages or article number, month when required and reliable, DOI or arXiv ID, then output a complete normalized BibTeX entry.
 
 ## General Rules
 
@@ -23,7 +46,7 @@ Do not invent months, locations, pages, volume, issue number, article number, or
 - Delete empty fields such as `volume={}`, `number={}`, and `pages={}` unless the target template requires them.
 - Ensure BibTeX keys are unique.
 - Use BibTeX page ranges with double hyphens: `pages={18378--18391}`.
-- Prefer verified metadata from DOI pages, IEEE Xplore, ACM Digital Library, publisher pages, journal websites, conference websites, or arXiv.
+- Prefer verified metadata from DOI pages, IEEE Xplore, ACM Digital Library, publisher pages, journal websites, conference websites, DBLP, Crossref, Semantic Scholar, OpenAlex, or arXiv.
 
 ## Title Format
 
@@ -207,7 +230,8 @@ For each entry, verify when possible:
 2. Official abbreviation.
 3. Author list.
 4. Year, month, volume, issue number, pages, or article number.
-5. DOI.
+5. DOI or arXiv ID.
 6. Conference location.
+7. Whether the selected record is unambiguous when the input was partial.
 
 If a field cannot be verified, preserve the original value when reasonable and mention `需核实` in the change note.
