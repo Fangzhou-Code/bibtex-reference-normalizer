@@ -2,16 +2,27 @@
 
 ## English
 
-Use these instructions when an AI agent is asked to normalize, verify, or polish BibTeX references for computer science and communications papers.
-
-Default to IEEE style unless the user specifies another target venue or the entry clearly belongs to ACM.
+Use these instructions when an AI agent is asked to normalize, verify, polish, or complete BibTeX references for computer science and communications papers. Default to IEEE style unless the user specifies another target venue or the entry clearly belongs to ACM.
 
 ### Required Output
 
 1. Return the corrected complete BibTeX entries.
 2. Add a short change note for each entry.
 3. Mark uncertain metadata as `needs verification` in English output or `需核实` in Chinese output.
-4. Do not invent months, conference locations, page ranges, volume numbers, issue numbers, article numbers, or DOIs.
+4. Include source hints when metadata was searched or inferred.
+5. Do not invent months, conference locations, page ranges, volume numbers, issue numbers, article numbers, or DOIs.
+
+### Partial Metadata Completion
+
+When the user provides only a paper title, DOI, arXiv ID, partial author list, venue name, screenshot text, or incomplete citation, search and complete the record if network access is available.
+
+1. Use the strongest lookup key first: DOI, arXiv ID, exact title, then partial title plus author/year/venue.
+2. Prefer authoritative sources: DOI/Crossref, publisher pages, IEEE Xplore, ACM Digital Library, SpringerLink, Elsevier ScienceDirect, Wiley, USENIX, ACL Anthology, arXiv, DBLP, then secondary sources such as Semantic Scholar, OpenAlex, Google Scholar snippets, or general web search.
+3. If an official BibTeX export exists, use it as the base entry and then normalize it.
+4. If no BibTeX export exists, construct the entry only from verified metadata.
+5. Treat a match as reliable only when the title matches exactly or near-exactly and at least one additional field agrees, such as author, year, venue, DOI, or arXiv ID.
+6. If multiple plausible records exist, ask the user to choose or mark ambiguous fields as `needs verification` / `需核实`.
+7. If the agent lacks internet access or cannot verify a field, preserve provided information when reasonable and mark missing or uncertain fields.
 
 ### Core Rules
 
@@ -19,7 +30,7 @@ Default to IEEE style unless the user specifies another target venue or the entr
 - Remove empty fields such as `volume={}`, `number={}`, and `pages={}` unless the target template requires them.
 - Ensure BibTeX keys are unique.
 - Use double hyphens for page ranges, for example `pages={18378--18391}`.
-- Verify metadata with reliable sources when possible: DOI pages, IEEE Xplore, ACM Digital Library, publisher pages, journal websites, conference websites, or arXiv.
+- Verify metadata with reliable sources when possible.
 
 ### Title Format
 
@@ -67,16 +78,27 @@ Prefer `@misc` or a target-template-supported `@preprint`. Use `eprint`, `archiv
 
 ## 中文
 
-当 AI agent 需要规范化、核查或润色计算机与通信领域论文的 BibTeX 引用时，使用这些规则。
-
-默认按 IEEE 风格处理，除非用户指定其他目标期刊/会议，或条目明显属于 ACM。
+当 AI agent 需要规范化、核查、润色或补全计算机与通信领域论文的 BibTeX 引用时，使用这些规则。默认按 IEEE 风格处理，除非用户指定其他目标期刊/会议，或条目明显属于 ACM。
 
 ### 输出要求
 
 1. 输出修改后的完整 BibTeX 条目。
 2. 为每条引用添加简短修改说明。
 3. 英文输出中将无法确认的信息标注为 `needs verification`，中文输出中标注为 `需核实`。
-4. 不要编造月份、会议地点、页码、卷号、期号、article number 或 DOI。
+4. 当元数据经过搜索或推断时，说明使用的来源线索。
+5. 不要编造月份、会议地点、页码、卷号、期号、article number 或 DOI。
+
+### 部分信息补全
+
+当用户只提供论文标题、DOI、arXiv ID、部分作者、会议/期刊名、截图文字或不完整引用时，如果具备联网能力，应搜索并补全文献信息。
+
+1. 优先使用最强检索键：DOI、arXiv ID、精确标题、再到标题片段加作者/年份/venue。
+2. 优先使用权威来源：DOI/Crossref、出版社页面、IEEE Xplore、ACM Digital Library、SpringerLink、Elsevier ScienceDirect、Wiley、USENIX、ACL Anthology、arXiv、DBLP，再使用 Semantic Scholar、OpenAlex、Google Scholar 摘要或普通网页作为辅助证据。
+3. 如果官方页面提供 BibTeX 导出，以官方 BibTeX 为基础，再按本规则规范化。
+4. 如果没有 BibTeX 导出，只用已核实的元数据构造条目。
+5. 只有当标题精确或近似匹配，并且作者、年份、venue、DOI 或 arXiv ID 中至少一项也匹配时，才认为记录可靠。
+6. 如果存在多个可能记录，不要猜测；请用户选择，或把有歧义字段标注为 `需核实`。
+7. 如果 agent 无法联网或无法核实某字段，合理保留用户提供的信息，并标注缺失或不确定字段。
 
 ### 核心规则
 
@@ -84,7 +106,7 @@ Prefer `@misc` or a target-template-supported `@preprint`. Use `eprint`, `archiv
 - 删除空字段，例如 `volume={}`、`number={}`、`pages={}`，除非目标模板要求保留。
 - 确保 BibTeX key 唯一。
 - 页码范围使用双连字符，例如 `pages={18378--18391}`。
-- 尽量通过 DOI 页面、IEEE Xplore、ACM Digital Library、出版社页面、期刊官网、会议官网或 arXiv 核查元数据。
+- 尽量通过可靠来源核查元数据。
 
 ### 标题格式
 
