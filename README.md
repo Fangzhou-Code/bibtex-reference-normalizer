@@ -12,7 +12,7 @@
 - Handles IEEE Access entries without adding unnecessary `month` or `number` fields.
 - Formats IEEE conference locations, including special formats for the USA, U.K., and U.A.E.
 - Preserves important metadata such as DOI, URL, pages, volume, publisher, series, and article number.
-- Marks uncertain metadata as `需核实` instead of inventing missing information.
+- Marks uncertain metadata as `needs verification` instead of inventing missing information.
 
 ### How To Use
 
@@ -30,7 +30,7 @@ Expected output:
 
 1. Corrected complete BibTeX entries.
 2. A short change note for each entry.
-3. `需核实` labels for fields that cannot be reliably verified.
+3. `needs verification` labels for fields that cannot be reliably verified.
 
 ### Skill Files
 
