@@ -54,6 +54,86 @@ Expected output:
 3. Source hints when metadata was searched or inferred.
 4. `needs verification` labels for fields that cannot be reliably verified.
 
+### Examples
+
+#### Example 1: Fix an incorrectly formatted BibTeX entry
+
+Input prompt:
+
+```text
+Use $bibtex-reference-normalizer to standardize this BibTeX entry for an IEEE paper.
+
+@article{9737334,
+  author={Qi, Jiahao and Ma, Xiaoyu and Liu, Yuwen and Li, Qiang and Zhang, Kai and Chen, Wei and Wang, Lin},
+  journal={IEEE Internet of Things Journal},
+  title={High-quality model aggregation for Blockchain-Based Federated Learning via Reputation-Motivated Task Participation},
+  year={2022},
+  month={October},
+  volume={9},
+  number={19},
+  pages={18378-18391},
+  doi={10.1109/JIOT.2022.3157698}
+}
+```
+
+Expected style of output:
+
+```bibtex
+@ARTICLE{9737334,
+  author={Qi, Jiahao and others},
+  journal={IEEE Internet Things J.},
+  title={{H}igh-quality model aggregation for blockchain-based federated learning via reputation-motivated task participation},
+  year={2022},
+  month={Oct.},
+  volume={9},
+  number={19},
+  pages={18378--18391},
+  doi={10.1109/JIOT.2022.3157698}
+}
+```
+
+Typical changes:
+
+- Shortened authors because there are more than 6 authors.
+- Abbreviated the IEEE journal name.
+- Converted the title to sentence case and protected the first title letter.
+- Converted `October` to `Oct.`.
+- Replaced the page range hyphen with BibTeX double hyphens.
+
+#### Example 2: Complete a reference from a title or partial metadata
+
+Input prompt:
+
+```text
+Use $bibtex-reference-normalizer to complete and standardize this reference for an IEEE paper.
+
+Title: Survey on multi-task learning in smart transportation
+Venue: IEEE Access
+Year: 2024
+```
+
+Expected style of output after verification:
+
+```bibtex
+@ARTICLE{10401928,
+  author={Alzahrani, Mohammed and Wang, Qianlong and Liao, Weixian and Chen, Xuhui and Yu, Wei},
+  journal={IEEE Access},
+  title={{S}urvey on multi-task learning in smart transportation},
+  year={2024},
+  volume={12},
+  pages={17023--17044},
+  doi={10.1109/ACCESS.2024.3355034}
+}
+```
+
+Typical changes:
+
+- Searched reliable sources using the title, venue, and year.
+- Completed authors, volume, pages, and DOI.
+- Kept `IEEE Access` unabridged.
+- Did not add `month` or `number` for the IEEE Access entry.
+- Added source hints or `needs verification` if any field could not be reliably verified.
+
 ### File Structure
 
 ```text
@@ -117,6 +197,86 @@ Follow CLAUDE.md and AGENTS.md to complete and normalize the following BibTeX re
 2. 每条引用的简短修改说明。
 3. 当元数据经过搜索或推断时，说明来源线索。
 4. 对无法可靠核实的字段标注 `需核实`。
+
+### 案例
+
+#### 案例 1：修正格式错误的 BibTeX 条目
+
+输入 prompt：
+
+```text
+Use $bibtex-reference-normalizer to standardize this BibTeX entry for an IEEE paper.
+
+@article{9737334,
+  author={Qi, Jiahao and Ma, Xiaoyu and Liu, Yuwen and Li, Qiang and Zhang, Kai and Chen, Wei and Wang, Lin},
+  journal={IEEE Internet of Things Journal},
+  title={High-quality model aggregation for Blockchain-Based Federated Learning via Reputation-Motivated Task Participation},
+  year={2022},
+  month={October},
+  volume={9},
+  number={19},
+  pages={18378-18391},
+  doi={10.1109/JIOT.2022.3157698}
+}
+```
+
+期望输出风格：
+
+```bibtex
+@ARTICLE{9737334,
+  author={Qi, Jiahao and others},
+  journal={IEEE Internet Things J.},
+  title={{H}igh-quality model aggregation for blockchain-based federated learning via reputation-motivated task participation},
+  year={2022},
+  month={Oct.},
+  volume={9},
+  number={19},
+  pages={18378--18391},
+  doi={10.1109/JIOT.2022.3157698}
+}
+```
+
+典型修改：
+
+- 作者超过 6 人，保留第一作者并使用 `and others`。
+- 将 IEEE 期刊名改为官方缩写。
+- 将标题改为 sentence case，并保护标题首字母。
+- 将 `October` 改为 `Oct.`。
+- 将页码范围改为 BibTeX 双连字符。
+
+#### 案例 2：根据标题或部分信息自动补全文献
+
+输入 prompt：
+
+```text
+Use $bibtex-reference-normalizer to complete and standardize this reference for an IEEE paper.
+
+Title: Survey on multi-task learning in smart transportation
+Venue: IEEE Access
+Year: 2024
+```
+
+核实后期望输出风格：
+
+```bibtex
+@ARTICLE{10401928,
+  author={Alzahrani, Mohammed and Wang, Qianlong and Liao, Weixian and Chen, Xuhui and Yu, Wei},
+  journal={IEEE Access},
+  title={{S}urvey on multi-task learning in smart transportation},
+  year={2024},
+  volume={12},
+  pages={17023--17044},
+  doi={10.1109/ACCESS.2024.3355034}
+}
+```
+
+典型修改：
+
+- 根据标题、venue 和年份搜索可靠来源。
+- 补全作者、卷号、页码和 DOI。
+- 保持 `IEEE Access` 不缩写。
+- 不为 IEEE Access 条目添加 `month` 或 `number`。
+- 如果字段无法可靠核实，应说明来源线索或标注 `需核实`。
 
 ### 文件结构
 
