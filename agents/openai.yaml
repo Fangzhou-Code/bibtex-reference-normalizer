@@ -1,0 +1,4 @@
+interface:
+  display_name: "BibTeX Reference Normalizer"
+  short_description: "Normalize IEEE, ACM, and arXiv BibTeX references."
+  default_prompt: "Use $bibtex-reference-normalizer to standardize these BibTeX references for an IEEE paper."
