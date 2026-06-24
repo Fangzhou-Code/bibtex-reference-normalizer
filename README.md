@@ -28,7 +28,7 @@ The skill also includes these additional style rules:
 - Protect common communications terms in titles, such as `{MIMO}`, `{OFDM}`, `{IoT}`, `{RIS}`, `{CSI}`, `{FedAvg}`, and `{Hybrid-FL}`.
 - For IEEE early-access journal papers, do not invent final volume, issue, pages, month, or year. Use the IEEE Xplore Date of Publication and DOI in a `note` field, such as `note={early access, Feb. 24, 2026, doi: ...}`.
 - Before citing an arXiv/preprint entry, check whether a formally published or peer-reviewed version exists.
-- arXiv references should include the official arXiv identifier, such as `arXiv:2403.00561v2 [cs.LG]`; use `primaryClass`, `url`, or `note` when needed so the identifier appears in the rendered reference.
+- arXiv references should include the base official arXiv identifier, such as `arXiv:2403.00561`, without version number or subject class unless the target venue asks for them; use `url` or `note` when needed so the identifier appears in the rendered reference.
 - For textbooks, cite specific chapters or equations in LaTeX with locators such as `\cite[Ch. 2]{key}` or `\cite[Eq. (9.17)]{key}`.
 - Unless the target venue explicitly requires a different rule, keep the first author and replace the rest with `and others` when there are more than 5 authors. If the target style requests it, use `UK` for United Kingdom conference locations and `United Arab Emirates` for UAE conference locations.
 
@@ -197,7 +197,7 @@ README.md             # Bilingual project documentation
 - 标题中需要保护通信领域常见术语大小写，例如 `{MIMO}`、`{OFDM}`、`{IoT}`、`{RIS}`、`{CSI}`、`{FedAvg}`、`{Hybrid-FL}`。
 - IEEE early-access 期刊论文不要编造最终卷号、期号、页码、月份或年份；用 IEEE Xplore 的 Date of Publication 和 DOI 写入 `note` 字段，例如 `note={early access, Feb. 24, 2026, doi: ...}`。
 - 引用 arXiv/preprint 前，先检查是否已有正式发表或同行评议版本。
-- arXiv 引用应包含官方 arXiv identifier，例如 `arXiv:2403.00561v2 [cs.LG]`；必要时使用 `primaryClass`、`url` 或 `note`，确保最终参考文献中能显示该 identifier。
+- arXiv 引用应包含基础官方 arXiv identifier，例如 `arXiv:2403.00561`；默认不带版本号和学科分类，除非目标 venue 要求；必要时使用 `url` 或 `note`，确保最终参考文献中能显示该 identifier。
 - 教材引用具体章节或公式时，在 LaTeX 引用命令中写定位信息，例如 `\cite[Ch. 2]{key}` 或 `\cite[Eq. (9.17)]{key}`。
 - 除非目标 venue 明确要求其他规则，否则作者数量超过 5 个时保留第一作者并用 `and others` 表示其余作者。如果目标格式要求，英国会议地点写 `UK`；阿联酋会议地点写 `United Arab Emirates`。
 

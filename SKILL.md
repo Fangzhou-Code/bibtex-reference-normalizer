@@ -254,7 +254,7 @@ Before citing a preprint, check whether a formally published or peer-reviewed ve
 
 Prefer `@misc`, or `@preprint` if the target template supports it.
 
-arXiv references must include the arXiv identifier. Use the official form `arXiv:YYMM.NNNNN` for newer identifiers, optionally with version and category, such as `arXiv:2403.00561v2 [cs.LG]`. For older identifiers, preserve the archive prefix form, such as `arXiv:hep-th/9901001`. Keep the identifier contiguous; do not insert spaces or extra punctuation inside it.
+arXiv references must include the arXiv identifier. Use the base official form `arXiv:YYMM.NNNNN` for newer identifiers, such as `arXiv:2403.00561`, without version number or subject class unless the target venue explicitly asks for them. For older identifiers, preserve the archive prefix form, such as `arXiv:hep-th/9901001`. Keep the identifier contiguous; do not insert spaces or extra punctuation inside it.
 
 Do not write arXiv entries as:
 
@@ -272,14 +272,13 @@ Preferred format:
   month={Mar.},
   eprint={2403.00561},
   archivePrefix={arXiv},
-  primaryClass={cs.CV},
-  note={arXiv:2403.00561 [cs.CV]},
+  note={arXiv:2403.00561},
   url={https://arxiv.org/abs/2403.00561},
   doi={10.48550/arXiv.2403.00561}
 }
 ```
 
-For arXiv entries, verify the version, subject class, and submission/revision date from the arXiv page. Include `primaryClass` when known. Include a `note` or `url` when the target BibTeX style may not render `eprint`/`archivePrefix`; this ensures the printed reference still contains the arXiv identifier. If a venue asks for access month/year, include it in a target-supported field such as `note`.
+For arXiv entries, verify the base arXiv identifier and submission/revision date from the arXiv page. Do not include version number or subject class by default. Include a `note` or `url` when the target BibTeX style may not render `eprint`/`archivePrefix`; this ensures the printed reference still contains the arXiv identifier. If a venue asks for access month/year, include it in a target-supported field such as `note`.
 
 ## Textbooks
 
