@@ -254,6 +254,8 @@ Before citing a preprint, check whether a formally published or peer-reviewed ve
 
 Prefer `@misc`, or `@preprint` if the target template supports it.
 
+arXiv references must include the arXiv identifier. Use the official form `arXiv:YYMM.NNNNN` for newer identifiers, optionally with version and category, such as `arXiv:2403.00561v2 [cs.LG]`. For older identifiers, preserve the archive prefix form, such as `arXiv:hep-th/9901001`. Keep the identifier contiguous; do not insert spaces or extra punctuation inside it.
+
 Do not write arXiv entries as:
 
 ```bibtex
@@ -270,11 +272,14 @@ Preferred format:
   month={Mar.},
   eprint={2403.00561},
   archivePrefix={arXiv},
+  primaryClass={cs.CV},
+  note={arXiv:2403.00561 [cs.CV]},
+  url={https://arxiv.org/abs/2403.00561},
   doi={10.48550/arXiv.2403.00561}
 }
 ```
 
-For arXiv entries, verify the version and access/submission date from the arXiv page. If following a guide or venue that asks for access month/year, include the access information in the target-supported field, usually `note`.
+For arXiv entries, verify the version, subject class, and submission/revision date from the arXiv page. Include `primaryClass` when known. Include a `note` or `url` when the target BibTeX style may not render `eprint`/`archivePrefix`; this ensures the printed reference still contains the arXiv identifier. If a venue asks for access month/year, include it in a target-supported field such as `note`.
 
 ## Textbooks
 
