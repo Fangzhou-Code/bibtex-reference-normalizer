@@ -11,11 +11,11 @@ Normalize BibTeX references according to the target publication style. Default t
 
 Apply rules in this order:
 
-1. The user's explicit target venue, template, or advisor-provided guide.
+1. The user's explicit target venue, template, or project-specific guide.
 2. Official publisher metadata and style guides.
 3. This skill's default rules.
 
-Apply author truncation after more than 5 authors unless the target venue explicitly requires a different rule. If the user asks to follow the Shuping Dang "Citing References in Academic Papers" guide, also apply the guide-specific choices in this file, including `UK` for United Kingdom conference locations and `United Arab Emirates` for UAE conference locations.
+Apply author truncation after more than 5 authors unless the target venue explicitly requires a different rule. Apply project-specific choices when requested, such as `UK` for United Kingdom conference locations or `United Arab Emirates` for UAE conference locations.
 
 ## Output Requirements
 
@@ -115,7 +115,7 @@ Use month abbreviations:
 Jan., Feb., Mar., Apr., May, June, July, Aug., Sept., Oct., Nov., Dec.
 ```
 
-The advisor/PDF guide also permits `Jun.` for June, `Jul.` for July, and `Sep.` for September. Keep one style consistent within the same bibliography.
+Some target styles also permit `Jun.` for June, `Jul.` for July, and `Sep.` for September. Keep one style consistent within the same bibliography.
 
 ### IEEE Access
 
@@ -198,7 +198,7 @@ Apply location format in this order:
 - United Arab Emirates: `address={City, U.A.E.}`
 - Other countries: `address={City, Country}`
 
-If following the Shuping Dang guide, use `UK` rather than `U.K.` and `United Arab Emirates` rather than `U.A.E.` or `UAE`.
+If the target style requests it, use `UK` rather than `U.K.` and `United Arab Emirates` rather than `U.A.E.` or `UAE`.
 
 Examples:
 

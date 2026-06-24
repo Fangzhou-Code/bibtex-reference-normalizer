@@ -6,7 +6,7 @@ Use these instructions when an AI agent is asked to normalize, verify, polish, o
 
 ### Style Precedence
 
-Apply the user's target venue, template, or advisor guide first. Unless the target venue explicitly requires a different rule, truncate authors when there are more than 5 authors. If the user asks to follow the Shuping Dang "Citing References in Academic Papers" guide, also use its specific choices: `UK` for United Kingdom conference locations, `United Arab Emirates` for UAE conference locations, and IEEE early-access entries with a `note` field containing early access date and DOI.
+Apply the user's target venue, template, or project-specific guide first. Unless the target venue explicitly requires a different rule, truncate authors when there are more than 5 authors. Apply project-specific choices when requested, such as `UK` for United Kingdom conference locations, `United Arab Emirates` for UAE conference locations, and IEEE early-access entries with a `note` field containing early access date and DOI.
 
 ### Required Output
 
@@ -80,7 +80,7 @@ If verified, use `address` in this order:
 - United Arab Emirates: `address={City, U.A.E.}`
 - Other countries: `address={City, Country}`
 
-If following the Shuping Dang guide, use `UK` and `United Arab Emirates` instead of `U.K.` and `U.A.E.`. Conference proceedings may retain the year after `Proc.` when that is the established form, such as `Proc. 2024 IEEE Int. Conf. ...`.
+If the target style requests it, use `UK` and `United Arab Emirates` instead of `U.K.` and `U.A.E.`. Conference proceedings may retain the year after `Proc.` when that is the established form, such as `Proc. 2024 IEEE Int. Conf. ...`.
 
 Do not invent locations for online, hybrid, or unverified conferences.
 
@@ -102,7 +102,7 @@ For textbooks, use publisher pages, Google Books, or Google Scholar metadata. Ke
 
 ### 风格优先级
 
-优先遵循用户指定的目标期刊/会议、模板或导师指南。除非目标 venue 明确要求其他规则，否则作者超过 5 人即缩写。如果用户要求遵循 Shuping Dang 的 "Citing References in Academic Papers" 指南，则同时使用该指南的具体规则：英国会议地点写 `UK`；阿联酋会议地点写 `United Arab Emirates`；IEEE early-access 条目用 `note` 字段写 early access 日期和 DOI。
+优先遵循用户指定的目标期刊/会议、模板或项目特定指南。除非目标 venue 明确要求其他规则，否则作者超过 5 人即缩写。按需应用项目特定规则，例如英国会议地点写 `UK`；阿联酋会议地点写 `United Arab Emirates`；IEEE early-access 条目用 `note` 字段写 early access 日期和 DOI。
 
 ### 输出要求
 
@@ -176,7 +176,7 @@ note={early access, Feb. 24, 2026, doi: 10.1109/TVT.2026.3667726}
 - 阿联酋：`address={City, U.A.E.}`
 - 其他国家：`address={City, Country}`
 
-如果遵循 Shuping Dang 指南，英国写 `UK`，阿联酋写 `United Arab Emirates`。会议 proceedings 如有既定格式，可以在 `Proc.` 后保留年份，例如 `Proc. 2024 IEEE Int. Conf. ...`。
+如果目标格式要求，英国写 `UK`，阿联酋写 `United Arab Emirates`。会议 proceedings 如有既定格式，可以在 `Proc.` 后保留年份，例如 `Proc. 2024 IEEE Int. Conf. ...`。
 
 对于线上、混合或无法核实地点的会议，不要编造地点。
 

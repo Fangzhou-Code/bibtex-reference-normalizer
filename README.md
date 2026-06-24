@@ -19,9 +19,9 @@
 
 When only partial information is provided, the agent should search authoritative sources first: DOI/Crossref, publisher pages, IEEE Xplore, ACM Digital Library, arXiv, DBLP, and official venue pages. Secondary sources such as Semantic Scholar, OpenAlex, Google Scholar snippets, or general web search should be used only as supporting evidence. If multiple plausible records exist, the agent should ask for clarification or mark ambiguous fields as `needs verification`.
 
-### Rules Added From the Reference-Citing PDF
+### Additional Style Rules
 
-The skill also includes rules extracted from the provided `Citing References in Academic Papers.pdf` guide:
+The skill also includes these additional style rules:
 
 - Prefer original IEEE Xplore BibTeX for IEEE journal and conference papers.
 - Use Google Scholar BibTeX only when stronger publisher metadata is unavailable; use Google Books or publisher pages for textbooks.
@@ -29,7 +29,7 @@ The skill also includes rules extracted from the provided `Citing References in 
 - For IEEE early-access journal papers, do not invent final volume, issue, pages, month, or year. Use the IEEE Xplore Date of Publication and DOI in a `note` field, such as `note={early access, Feb. 24, 2026, doi: ...}`.
 - Before citing an arXiv/preprint entry, check whether a formally published or peer-reviewed version exists.
 - For textbooks, cite specific chapters or equations in LaTeX with locators such as `\cite[Ch. 2]{key}` or `\cite[Eq. (9.17)]{key}`.
-- Unless the target venue explicitly requires a different rule, keep the first author and replace the rest with `and others` when there are more than 5 authors. If following this PDF/advisor guide specifically, also use its style choices: `UK` for United Kingdom conference locations and `United Arab Emirates` for UAE conference locations.
+- Unless the target venue explicitly requires a different rule, keep the first author and replace the rest with `and others` when there are more than 5 authors. If the target style requests it, use `UK` for United Kingdom conference locations and `United Arab Emirates` for UAE conference locations.
 
 ### How To Use With Codex
 
@@ -187,9 +187,9 @@ README.md             # Bilingual project documentation
 
 当用户只提供部分信息时，agent 应优先搜索权威来源：DOI/Crossref、出版社页面、IEEE Xplore、ACM Digital Library、arXiv、DBLP 和官方会议/期刊页面。Semantic Scholar、OpenAlex、Google Scholar 摘要或普通网页只作为辅助证据。如果存在多个可能记录，应要求用户确认，或将有歧义字段标注为 `需核实`。
 
-### 根据参考文献 PDF 补充的规则
+### 补充格式规则
 
-本 skill 还补充了用户提供的 `Citing References in Academic Papers.pdf` 中的规则：
+本 skill 还包含以下补充格式规则：
 
 - IEEE 期刊和会议论文优先使用 IEEE Xplore 导出的原始 BibTeX。
 - 只有在更强的出版社元数据不可用时，才使用 Google Scholar BibTeX；教材可参考 Google Books 或出版社页面。
@@ -197,7 +197,7 @@ README.md             # Bilingual project documentation
 - IEEE early-access 期刊论文不要编造最终卷号、期号、页码、月份或年份；用 IEEE Xplore 的 Date of Publication 和 DOI 写入 `note` 字段，例如 `note={early access, Feb. 24, 2026, doi: ...}`。
 - 引用 arXiv/preprint 前，先检查是否已有正式发表或同行评议版本。
 - 教材引用具体章节或公式时，在 LaTeX 引用命令中写定位信息，例如 `\cite[Ch. 2]{key}` 或 `\cite[Eq. (9.17)]{key}`。
-- 除非目标 venue 明确要求其他规则，否则作者数量超过 5 个时保留第一作者并用 `and others` 表示其余作者。如果明确遵循该 PDF/导师指南，则同时使用其中的风格选择：英国会议地点写 `UK`；阿联酋会议地点写 `United Arab Emirates`。
+- 除非目标 venue 明确要求其他规则，否则作者数量超过 5 个时保留第一作者并用 `and others` 表示其余作者。如果目标格式要求，英国会议地点写 `UK`；阿联酋会议地点写 `United Arab Emirates`。
 
 ### 如何在 Codex 中使用
 
