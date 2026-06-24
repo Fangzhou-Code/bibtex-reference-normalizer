@@ -2,11 +2,11 @@
 
 ## English
 
-Use these instructions when an AI agent is asked to normalize, verify, polish, or complete BibTeX references for computer science and communications papers. Default to IEEE style unless the user specifies another target venue or the entry clearly belongs to ACM.
+Use these instructions when an AI agent is asked to normalize, verify, polish, or complete BibTeX references for computer science and communications papers. Infer the target venue and style from each reference when the user does not provide them. Default to IEEE style only when the style remains unclear and the entry is in the computer science or communications domain.
 
 ### Style Precedence
 
-Apply the user's target venue, template, or project-specific guide first. Unless the target venue explicitly requires a different rule, truncate authors when there are more than 5 authors. Apply project-specific choices when requested, such as `UK` for United Kingdom conference locations, `United Arab Emirates` for UAE conference locations, and IEEE early-access entries with a `note` field containing early access date and DOI.
+Apply the user's target venue, template, or project-specific guide first if provided. If not provided, infer the venue and style from DOI, arXiv ID, publisher pages, IEEE Xplore, ACM Digital Library, DBLP, Crossref, official venue pages, and the entry's `journal` or `booktitle` fields. Do not ask the user for target style or venue unless lookup remains ambiguous. Unless the target venue explicitly requires a different rule, truncate authors when there are more than 5 authors. Apply project-specific choices when requested, such as `UK` for United Kingdom conference locations, `United Arab Emirates` for UAE conference locations, and IEEE early-access entries with a `note` field containing early access date and DOI.
 
 ### Required Output
 
@@ -21,12 +21,13 @@ Apply the user's target venue, template, or project-specific guide first. Unless
 When the user provides only a paper title, DOI, arXiv ID, partial author list, venue name, screenshot text, or incomplete citation, search and complete the record if network access is available.
 
 1. Use the strongest lookup key first: DOI, arXiv ID, exact title, then partial title plus author/year/venue.
-2. Prefer authoritative sources: IEEE Xplore original BibTeX for IEEE papers; DOI/Crossref; publisher pages; ACM Digital Library, SpringerLink, Elsevier ScienceDirect, Wiley, USENIX, ACL Anthology, arXiv, DBLP; Google Scholar BibTeX for papers unavailable from stronger sources; Google Books or publisher pages for textbooks; then secondary sources such as Semantic Scholar, OpenAlex, Google Scholar snippets, or general web search.
-3. If an official BibTeX export exists, use it as the base entry and then normalize it.
-4. If no BibTeX export exists, construct the entry only from verified metadata.
-5. Treat a match as reliable only when the title matches exactly or near-exactly and at least one additional field agrees, such as author, year, venue, DOI, or arXiv ID.
-6. If multiple plausible records exist, ask the user to choose or mark ambiguous fields as `needs verification` / `需核实`.
-7. If the agent lacks internet access or cannot verify a field, preserve provided information when reasonable and mark missing or uncertain fields.
+2. Infer the publication type, target venue, and target style from the lookup result.
+3. Prefer authoritative sources: IEEE Xplore original BibTeX for IEEE papers; DOI/Crossref; publisher pages; ACM Digital Library, SpringerLink, Elsevier ScienceDirect, Wiley, USENIX, ACL Anthology, arXiv, DBLP; Google Scholar BibTeX for papers unavailable from stronger sources; Google Books or publisher pages for textbooks; then secondary sources such as Semantic Scholar, OpenAlex, Google Scholar snippets, or general web search.
+4. If an official BibTeX export exists, use it as the base entry and then normalize it.
+5. If no BibTeX export exists, construct the entry only from verified metadata.
+6. Treat a match as reliable only when the title matches exactly or near-exactly and at least one additional field agrees, such as author, year, venue, DOI, or arXiv ID.
+7. If multiple plausible records exist, ask the user to choose or mark ambiguous fields as `needs verification` / `需核实`.
+8. If the agent lacks internet access or cannot verify a field, preserve provided information when reasonable and mark missing or uncertain fields.
 
 ### Core Rules
 
@@ -98,11 +99,11 @@ For textbooks, use publisher pages, Google Books, or Google Scholar metadata. Ke
 
 ## 中文
 
-当 AI agent 需要规范化、核查、润色或补全计算机与通信领域论文的 BibTeX 引用时，使用这些规则。默认按 IEEE 风格处理，除非用户指定其他目标期刊/会议，或条目明显属于 ACM。
+当 AI agent 需要规范化、核查、润色或补全计算机与通信领域论文的 BibTeX 引用时，使用这些规则。用户未提供目标 venue 或格式时，应根据文献本身自动推断。只有在格式仍不清楚且条目属于计算机或通信领域时，才默认按 IEEE 风格处理。
 
 ### 风格优先级
 
-优先遵循用户指定的目标期刊/会议、模板或项目特定指南。除非目标 venue 明确要求其他规则，否则作者超过 5 人即缩写。按需应用项目特定规则，例如英国会议地点写 `UK`；阿联酋会议地点写 `United Arab Emirates`；IEEE early-access 条目用 `note` 字段写 early access 日期和 DOI。
+如果用户提供了目标期刊/会议、模板或项目特定指南，则优先遵循。若用户未提供，应根据 DOI、arXiv ID、出版社页面、IEEE Xplore、ACM Digital Library、DBLP、Crossref、官方 venue 页面，以及条目中的 `journal` 或 `booktitle` 字段自动推断目标 venue 和格式。除非检索后仍有歧义，否则不要要求用户提供目标格式或目标 venue。除非目标 venue 明确要求其他规则，否则作者超过 5 人即缩写。按需应用项目特定规则，例如英国会议地点写 `UK`；阿联酋会议地点写 `United Arab Emirates`；IEEE early-access 条目用 `note` 字段写 early access 日期和 DOI。
 
 ### 输出要求
 
@@ -117,12 +118,13 @@ For textbooks, use publisher pages, Google Books, or Google Scholar metadata. Ke
 当用户只提供论文标题、DOI、arXiv ID、部分作者、会议/期刊名、截图文字或不完整引用时，如果具备联网能力，应搜索并补全文献信息。
 
 1. 优先使用最强检索键：DOI、arXiv ID、精确标题、再到标题片段加作者/年份/venue。
-2. 优先使用权威来源：IEEE 论文优先使用 IEEE Xplore 原始 BibTeX；DOI/Crossref；出版社页面；ACM Digital Library、SpringerLink、Elsevier ScienceDirect、Wiley、USENIX、ACL Anthology、arXiv、DBLP；如果更强来源不可用，再使用 Google Scholar BibTeX；教材可使用 Google Books 或出版社页面；最后才使用 Semantic Scholar、OpenAlex、Google Scholar 摘要或普通网页作为辅助证据。
-3. 如果官方页面提供 BibTeX 导出，以官方 BibTeX 为基础，再按本规则规范化。
-4. 如果没有 BibTeX 导出，只用已核实的元数据构造条目。
-5. 只有当标题精确或近似匹配，并且作者、年份、venue、DOI 或 arXiv ID 中至少一项也匹配时，才认为记录可靠。
-6. 如果存在多个可能记录，不要猜测；请用户选择，或把有歧义字段标注为 `需核实`。
-7. 如果 agent 无法联网或无法核实某字段，合理保留用户提供的信息，并标注缺失或不确定字段。
+2. 根据检索结果自动推断出版类型、目标 venue 和目标格式。
+3. 优先使用权威来源：IEEE 论文优先使用 IEEE Xplore 原始 BibTeX；DOI/Crossref；出版社页面；ACM Digital Library、SpringerLink、Elsevier ScienceDirect、Wiley、USENIX、ACL Anthology、arXiv、DBLP；如果更强来源不可用，再使用 Google Scholar BibTeX；教材可使用 Google Books 或出版社页面；最后才使用 Semantic Scholar、OpenAlex、Google Scholar 摘要或普通网页作为辅助证据。
+4. 如果官方页面提供 BibTeX 导出，以官方 BibTeX 为基础，再按本规则规范化。
+5. 如果没有 BibTeX 导出，只用已核实的元数据构造条目。
+6. 只有当标题精确或近似匹配，并且作者、年份、venue、DOI 或 arXiv ID 中至少一项也匹配时，才认为记录可靠。
+7. 如果存在多个可能记录，不要猜测；请用户选择，或把有歧义字段标注为 `需核实`。
+8. 如果 agent 无法联网或无法核实某字段，合理保留用户提供的信息，并标注缺失或不确定字段。
 
 ### 核心规则
 

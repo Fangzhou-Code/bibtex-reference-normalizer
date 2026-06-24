@@ -39,10 +39,7 @@ Install or copy this repository into your Codex skills directory, then invoke it
 Example prompt:
 
 ```text
-Use $bibtex-reference-normalizer to complete and standardize the following BibTeX references for my target venue.
-
-Target style: IEEE / ACM / arXiv / publisher-specific style
-Target venue: [journal or conference name]
+Use $bibtex-reference-normalizer to complete and standardize the following BibTeX references. Infer the target venue and style automatically.
 
 [Paste BibTeX entries, paper titles, DOIs, or incomplete citations here]
 ```
@@ -54,10 +51,7 @@ Place this repository in your Claude Code workspace or copy `CLAUDE.md` / `AGENT
 Example prompt:
 
 ```text
-Follow CLAUDE.md and AGENTS.md to complete and normalize the following BibTeX references for my target venue.
-
-Target style: IEEE / ACM / arXiv / publisher-specific style
-Target venue: [journal or conference name]
+Follow CLAUDE.md and AGENTS.md to complete and normalize the following BibTeX references. Infer the target venue and style automatically.
 
 [Paste BibTeX entries, paper titles, DOIs, or incomplete citations here]
 ```
@@ -80,10 +74,7 @@ Expected output:
 Input prompt:
 
 ```text
-Use $bibtex-reference-normalizer to standardize this BibTeX entry for my target venue.
-
-Target style: IEEE
-Target venue: IEEE Internet of Things Journal
+Use $bibtex-reference-normalizer to standardize this BibTeX entry. Infer the target venue and style automatically.
 
 @article{9737334,
   author={Qi, Jiahao and Ma, Xiaoyu and Liu, Yuwen and Li, Qiang and Zhang, Kai and Chen, Wei and Wang, Lin},
@@ -127,10 +118,7 @@ Typical changes:
 Input prompt:
 
 ```text
-Use $bibtex-reference-normalizer to complete and standardize this reference for my target venue.
-
-Target style: IEEE
-Target venue: IEEE Access
+Use $bibtex-reference-normalizer to complete and standardize this reference. Infer the target venue and style automatically.
 
 Title: Survey on multi-task learning in smart transportation
 Venue: IEEE Access
@@ -208,10 +196,7 @@ README.md             # Bilingual project documentation
 示例 prompt：
 
 ```text
-使用 $bibtex-reference-normalizer 为我的目标场所完成和规范以下 BibTeX 参考文献。
-
-目标格式：IEEE / ACM / arXiv / 出版方指定格式
-目标场所：[期刊或会议名称]
+使用 $bibtex-reference-normalizer 完成和规范以下 BibTeX 参考文献，并自动推断目标场所和引用格式。
 
 [在这里粘贴 BibTeX 条目、论文标题、DOI 或不完整引用]
 ```
@@ -223,10 +208,7 @@ README.md             # Bilingual project documentation
 示例 prompt：
 
 ```text
-使用 CLAUDE.md 和 AGENTS.md 为我的目标场所完成和规范以下 BibTeX 参考文献。
-
-目标格式：IEEE / ACM / arXiv / 出版方指定格式
-目标场所：[期刊或会议名称]
+使用 CLAUDE.md 和 AGENTS.md 完成和规范以下 BibTeX 参考文献，并自动推断目标场所和引用格式。
 
 [在这里粘贴 BibTeX 条目、论文标题、DOI 或不完整引用]
 ```
@@ -249,10 +231,7 @@ README.md             # Bilingual project documentation
 输入 prompt：
 
 ```text
-使用 $bibtex-reference-normalizer 为我的目标场所规范以下 BibTeX 条目。
-
-目标格式：IEEE
-目标场所：IEEE Internet of Things Journal
+使用 $bibtex-reference-normalizer 规范以下 BibTeX 条目，并自动推断目标场所和引用格式。
 
 @article{9737334,
   author={Qi, Jiahao and Ma, Xiaoyu and Liu, Yuwen and Li, Qiang and Zhang, Kai and Chen, Wei and Wang, Lin},
@@ -296,10 +275,7 @@ README.md             # Bilingual project documentation
 输入 prompt：
 
 ```text
-使用 $bibtex-reference-normalizer 为我的目标场所完成和规范以下 BibTeX 参考文献。
-
-目标格式：IEEE
-目标场所：IEEE Access
+使用 $bibtex-reference-normalizer 完成和规范以下 BibTeX 参考文献，并自动推断目标场所和引用格式。
 
 Title: Survey on multi-task learning in smart transportation
 Venue: IEEE Access

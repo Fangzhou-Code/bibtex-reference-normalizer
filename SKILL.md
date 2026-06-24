@@ -11,9 +11,11 @@ Normalize BibTeX references according to the target publication style. Default t
 
 Apply rules in this order:
 
-1. The user's explicit target venue, template, or project-specific guide.
+1. The user's explicit target venue, template, or project-specific guide, if provided.
 2. Official publisher metadata and style guides.
 3. This skill's default rules.
+
+If the user does not provide a target style or venue, infer them from the reference itself. Use DOI, arXiv ID, publisher pages, IEEE Xplore, ACM Digital Library, DBLP, Crossref, official venue pages, and the entry's `journal` or `booktitle` fields. Do not ask the user for target style or venue unless the reference is ambiguous after lookup.
 
 Apply author truncation after more than 5 authors unless the target venue explicitly requires a different rule. Apply project-specific choices when requested, such as `UK` for United Kingdom conference locations or `United Arab Emirates` for UAE conference locations.
 
@@ -37,7 +39,13 @@ Use this workflow when the user provides only a title, DOI, arXiv ID, partial au
    - arXiv ID: query arXiv or the arXiv landing page first.
    - Exact title: search the exact title in quotation marks first.
    - Partial title plus authors/year/venue: search using the most specific combination.
-2. Prefer authoritative sources in this order:
+2. Infer the publication type, target style, and venue from the lookup result:
+   - IEEE journal/conference metadata -> IEEE style.
+   - IEEE Access metadata -> IEEE Access rules.
+   - ACM Digital Library metadata -> ACM style.
+   - arXiv-only metadata -> arXiv/preprint rules.
+   - Book metadata -> textbook rules.
+3. Prefer authoritative sources in this order:
    - For IEEE journal or conference papers, IEEE Xplore original BibTeX export when available.
    - DOI registration page or Crossref metadata.
    - Publisher or digital library page, especially ACM Digital Library, SpringerLink, Elsevier ScienceDirect, Wiley, USENIX, ACL Anthology, or arXiv.
@@ -45,11 +53,11 @@ Use this workflow when the user provides only a title, DOI, arXiv ID, partial au
    - Google Scholar BibTeX for papers not available from IEEE Xplore or the publisher.
    - Google Books or Google Scholar for textbooks.
    - Semantic Scholar, OpenAlex, Google Scholar snippets, or general web search only as secondary evidence.
-3. If an official BibTeX export exists, use it as the base entry, then apply this skill's normalization rules.
-4. If no BibTeX export exists, construct the entry from verified metadata only.
-5. Treat a match as reliable only when the title matches exactly or near-exactly and at least one additional field agrees, such as author, year, venue, DOI, or arXiv ID.
-6. If multiple plausible records exist, do not guess. Ask the user to choose or mark ambiguous fields as `需核实`.
-7. If the agent has no internet access or cannot verify a field, preserve the provided value when reasonable and mark missing or uncertain fields as `需核实`.
+4. If an official BibTeX export exists, use it as the base entry, then apply this skill's normalization rules.
+5. If no BibTeX export exists, construct the entry from verified metadata only.
+6. Treat a match as reliable only when the title matches exactly or near-exactly and at least one additional field agrees, such as author, year, venue, DOI, or arXiv ID.
+7. If multiple plausible records exist, do not guess. Ask the user to choose or mark ambiguous fields as `需核实`.
+8. If the agent has no internet access or cannot verify a field, preserve the provided value when reasonable and mark missing or uncertain fields as `需核实`.
 
 For title-only input, the expected behavior is: search the exact title, identify the correct publication record, collect authors, title, venue, year, volume/number/pages or article number, month when required and reliable, DOI or arXiv ID, then output a complete normalized BibTeX entry.
 
