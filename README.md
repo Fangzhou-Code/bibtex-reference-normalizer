@@ -29,7 +29,7 @@ The skill also includes rules extracted from the provided `Citing References in 
 - For IEEE early-access journal papers, do not invent final volume, issue, pages, month, or year. Use the IEEE Xplore Date of Publication and DOI in a `note` field, such as `note={early access, Feb. 24, 2026, doi: ...}`.
 - Before citing an arXiv/preprint entry, check whether a formally published or peer-reviewed version exists.
 - For textbooks, cite specific chapters or equations in LaTeX with locators such as `\cite[Ch. 2]{key}` or `\cite[Eq. (9.17)]{key}`.
-- If following this PDF/advisor guide specifically, use its style choices: author truncation after more than 5 authors, `UK` for United Kingdom conference locations, and `United Arab Emirates` for UAE conference locations.
+- Unless the target venue explicitly requires a different rule, keep the first author and replace the rest with `and others` when there are more than 5 authors. If following this PDF/advisor guide specifically, also use its style choices: `UK` for United Kingdom conference locations and `United Arab Emirates` for UAE conference locations.
 
 ### How To Use With Codex
 
@@ -38,7 +38,10 @@ Install or copy this repository into your Codex skills directory, then invoke it
 Example prompt:
 
 ```text
-Use $bibtex-reference-normalizer to complete and standardize the following BibTeX references for an IEEE paper.
+Use $bibtex-reference-normalizer to complete and standardize the following BibTeX references for my target venue.
+
+Target style: IEEE / ACM / arXiv / publisher-specific style
+Target venue: [journal or conference name]
 
 [Paste BibTeX entries, paper titles, DOIs, or incomplete citations here]
 ```
@@ -50,7 +53,10 @@ Place this repository in your Claude Code workspace or copy `CLAUDE.md` / `AGENT
 Example prompt:
 
 ```text
-Follow CLAUDE.md and AGENTS.md to complete and normalize the following BibTeX references for an IEEE paper.
+Follow CLAUDE.md and AGENTS.md to complete and normalize the following BibTeX references for my target venue.
+
+Target style: IEEE / ACM / arXiv / publisher-specific style
+Target venue: [journal or conference name]
 
 [Paste BibTeX entries, paper titles, DOIs, or incomplete citations here]
 ```
@@ -73,7 +79,10 @@ Expected output:
 Input prompt:
 
 ```text
-Use $bibtex-reference-normalizer to standardize this BibTeX entry for an IEEE paper.
+Use $bibtex-reference-normalizer to standardize this BibTeX entry for my target venue.
+
+Target style: IEEE
+Target venue: IEEE Internet of Things Journal
 
 @article{9737334,
   author={Qi, Jiahao and Ma, Xiaoyu and Liu, Yuwen and Li, Qiang and Zhang, Kai and Chen, Wei and Wang, Lin},
@@ -106,7 +115,7 @@ Expected style of output:
 
 Typical changes:
 
-- Shortened authors because there are more than 6 authors.
+- Shortened authors because there are more than 5 authors.
 - Abbreviated the IEEE journal name.
 - Converted the title to sentence case and protected the first title letter.
 - Converted `October` to `Oct.`.
@@ -117,7 +126,10 @@ Typical changes:
 Input prompt:
 
 ```text
-Use $bibtex-reference-normalizer to complete and standardize this reference for an IEEE paper.
+Use $bibtex-reference-normalizer to complete and standardize this reference for my target venue.
+
+Target style: IEEE
+Target venue: IEEE Access
 
 Title: Survey on multi-task learning in smart transportation
 Venue: IEEE Access
@@ -185,7 +197,7 @@ README.md             # Bilingual project documentation
 - IEEE early-access 期刊论文不要编造最终卷号、期号、页码、月份或年份；用 IEEE Xplore 的 Date of Publication 和 DOI 写入 `note` 字段，例如 `note={early access, Feb. 24, 2026, doi: ...}`。
 - 引用 arXiv/preprint 前，先检查是否已有正式发表或同行评议版本。
 - 教材引用具体章节或公式时，在 LaTeX 引用命令中写定位信息，例如 `\cite[Ch. 2]{key}` 或 `\cite[Eq. (9.17)]{key}`。
-- 如果明确遵循该 PDF/导师指南，则使用其中的风格选择：作者超过 5 人即缩写；英国会议地点写 `UK`；阿联酋会议地点写 `United Arab Emirates`。
+- 除非目标 venue 明确要求其他规则，否则作者数量超过 5 个时保留第一作者并用 `and others` 表示其余作者。如果明确遵循该 PDF/导师指南，则同时使用其中的风格选择：英国会议地点写 `UK`；阿联酋会议地点写 `United Arab Emirates`。
 
 ### 如何在 Codex 中使用
 
@@ -194,7 +206,10 @@ README.md             # Bilingual project documentation
 示例 prompt：
 
 ```text
-Use $bibtex-reference-normalizer to complete and standardize the following BibTeX references for an IEEE paper.
+使用 $bibtex-reference-normalizer 为我的目标场所完成和规范以下 BibTeX 参考文献。
+
+目标格式：IEEE / ACM / arXiv / 出版方指定格式
+目标场所：[期刊或会议名称]
 
 [在这里粘贴 BibTeX 条目、论文标题、DOI 或不完整引用]
 ```
@@ -206,7 +221,10 @@ Use $bibtex-reference-normalizer to complete and standardize the following BibTe
 示例 prompt：
 
 ```text
-Follow CLAUDE.md and AGENTS.md to complete and normalize the following BibTeX references for an IEEE paper.
+使用 CLAUDE.md 和 AGENTS.md 为我的目标场所完成和规范以下 BibTeX 参考文献。
+
+目标格式：IEEE / ACM / arXiv / 出版方指定格式
+目标场所：[期刊或会议名称]
 
 [在这里粘贴 BibTeX 条目、论文标题、DOI 或不完整引用]
 ```
@@ -229,7 +247,10 @@ Follow CLAUDE.md and AGENTS.md to complete and normalize the following BibTeX re
 输入 prompt：
 
 ```text
-Use $bibtex-reference-normalizer to standardize this BibTeX entry for an IEEE paper.
+使用 $bibtex-reference-normalizer 为我的目标场所规范以下 BibTeX 条目。
+
+目标格式：IEEE
+目标场所：IEEE Internet of Things Journal
 
 @article{9737334,
   author={Qi, Jiahao and Ma, Xiaoyu and Liu, Yuwen and Li, Qiang and Zhang, Kai and Chen, Wei and Wang, Lin},
@@ -262,7 +283,7 @@ Use $bibtex-reference-normalizer to standardize this BibTeX entry for an IEEE pa
 
 典型修改：
 
-- 作者超过 6 人，保留第一作者并使用 `and others`。
+- 作者数量超过 5 个，保留第一作者并使用 `and others`。
 - 将 IEEE 期刊名改为官方缩写。
 - 将标题改为 sentence case，并保护标题首字母。
 - 将 `October` 改为 `Oct.`。
@@ -273,7 +294,10 @@ Use $bibtex-reference-normalizer to standardize this BibTeX entry for an IEEE pa
 输入 prompt：
 
 ```text
-Use $bibtex-reference-normalizer to complete and standardize this reference for an IEEE paper.
+使用 $bibtex-reference-normalizer 为我的目标场所完成和规范以下 BibTeX 参考文献。
+
+目标格式：IEEE
+目标场所：IEEE Access
 
 Title: Survey on multi-task learning in smart transportation
 Venue: IEEE Access

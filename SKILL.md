@@ -15,7 +15,7 @@ Apply rules in this order:
 2. Official publisher metadata and style guides.
 3. This skill's default rules.
 
-If the user asks to follow the Shuping Dang "Citing References in Academic Papers" guide, apply the guide-specific choices in this file, including author truncation after more than 5 authors, `UK` for United Kingdom conference locations, and `United Arab Emirates` for UAE conference locations. Otherwise, use the default IEEE/ACM behavior below.
+Apply author truncation after more than 5 authors unless the target venue explicitly requires a different rule. If the user asks to follow the Shuping Dang "Citing References in Academic Papers" guide, also apply the guide-specific choices in this file, including `UK` for United Kingdom conference locations and `United Arab Emirates` for UAE conference locations.
 
 ## Output Requirements
 
@@ -80,10 +80,8 @@ Use sentence case.
 
 For IEEE style:
 
-- If there are more than 6 authors, keep the first author and replace the rest with `and others`.
-- If there are 6 or fewer authors, keep all authors.
-- Do not use "more than 5 authors" as the default IEEE truncation rule unless the user explicitly asks to follow the advisor/PDF guide that uses that threshold.
-- If following the Shuping Dang guide, truncate when the number of authors is greater than 5.
+- If there are more than 5 authors, keep the first author and replace the rest with `and others`.
+- If there are 5 or fewer authors, keep all authors.
 
 Example:
 

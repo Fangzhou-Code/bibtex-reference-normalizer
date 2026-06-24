@@ -6,7 +6,7 @@ Use these instructions when an AI agent is asked to normalize, verify, polish, o
 
 ### Style Precedence
 
-Apply the user's target venue, template, or advisor guide first. If the user asks to follow the Shuping Dang "Citing References in Academic Papers" guide, use its specific choices: truncate authors when there are more than 5 authors, use `UK` for United Kingdom conference locations, use `United Arab Emirates` for UAE conference locations, and handle IEEE early-access entries with a `note` field containing early access date and DOI.
+Apply the user's target venue, template, or advisor guide first. Unless the target venue explicitly requires a different rule, truncate authors when there are more than 5 authors. If the user asks to follow the Shuping Dang "Citing References in Academic Papers" guide, also use its specific choices: `UK` for United Kingdom conference locations, `United Arab Emirates` for UAE conference locations, and IEEE early-access entries with a `note` field containing early access date and DOI.
 
 ### Required Output
 
@@ -50,9 +50,7 @@ Do not convert ordinary technical phrases to title case unless they are proper n
 
 ### Authors
 
-For IEEE style, if there are more than 6 authors, keep the first author and replace the rest with `and others`. If there are 6 or fewer authors, keep all authors.
-
-If following the Shuping Dang guide, truncate when there are more than 5 authors.
+If there are more than 5 authors, keep the first author and replace the rest with `and others`. If there are 5 or fewer authors, keep all authors.
 
 For ACM style, usually keep the full author list unless the venue requires abbreviation.
 
@@ -104,7 +102,7 @@ For textbooks, use publisher pages, Google Books, or Google Scholar metadata. Ke
 
 ### 风格优先级
 
-优先遵循用户指定的目标期刊/会议、模板或导师指南。如果用户要求遵循 Shuping Dang 的 "Citing References in Academic Papers" 指南，则使用该指南的具体规则：作者超过 5 人即缩写；英国会议地点写 `UK`；阿联酋会议地点写 `United Arab Emirates`；IEEE early-access 条目用 `note` 字段写 early access 日期和 DOI。
+优先遵循用户指定的目标期刊/会议、模板或导师指南。除非目标 venue 明确要求其他规则，否则作者超过 5 人即缩写。如果用户要求遵循 Shuping Dang 的 "Citing References in Academic Papers" 指南，则同时使用该指南的具体规则：英国会议地点写 `UK`；阿联酋会议地点写 `United Arab Emirates`；IEEE early-access 条目用 `note` 字段写 early access 日期和 DOI。
 
 ### 输出要求
 
@@ -148,9 +146,7 @@ For textbooks, use publisher pages, Google Books, or Google Scholar metadata. Ke
 
 ### 作者
 
-IEEE 风格下，作者超过 6 人时保留第一作者并用 `and others` 表示其余作者；6 人及以下保留全部作者。
-
-如果遵循 Shuping Dang 指南，则作者超过 5 人时缩写。
+作者超过 5 人时保留第一作者并用 `and others` 表示其余作者；5 人及以下保留全部作者。
 
 ACM 风格下通常保留完整作者列表，除非目标会议或模板明确要求缩写。
 
