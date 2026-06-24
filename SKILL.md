@@ -260,11 +260,11 @@ Use ACM Digital Library metadata, ACM templates, or the venue-provided `.bst` / 
 
 Before citing a preprint, check whether a formally published or peer-reviewed version exists. If it exists and is the version the paper should cite, cite the published version instead of the preprint.
 
-Prefer `@misc`, or `@preprint` if the target template supports it.
+Use `@ARTICLE` for arXiv entries in this project.
 
 arXiv references must include the arXiv identifier. Use the base official form `arXiv:YYMM.NNNNN` for newer identifiers, such as `arXiv:2403.00561`, without version number or subject class unless the target venue explicitly asks for them. For older identifiers, preserve the archive prefix form, such as `arXiv:hep-th/9901001`. Keep the identifier contiguous; do not insert spaces or extra punctuation inside it.
 
-Do not write arXiv entries as:
+Write the arXiv identifier in the `journal` field:
 
 ```bibtex
 journal={arXiv preprint:2403.00561}
@@ -273,20 +273,19 @@ journal={arXiv preprint:2403.00561}
 Preferred format:
 
 ```bibtex
-@MISC{Yuan2024MultiTaskLU,
+@ARTICLE{Yuan2024MultiTaskLU,
   author={Yuan, Huaqing and He, Yi and Du, Peng and Song, Lu},
+  journal={arXiv preprint:2403.00561},
   title={{M}ulti-task learning using uncertainty to weigh losses for heterogeneous face attribute estimation},
   year={2024},
   month={Mar.},
-  eprint={2403.00561},
-  archivePrefix={arXiv},
   note={arXiv:2403.00561},
   url={https://arxiv.org/abs/2403.00561},
   doi={10.48550/arXiv.2403.00561}
 }
 ```
 
-For arXiv entries, verify the base arXiv identifier and submission/revision date from the arXiv page. Do not include version number or subject class by default. Include a `note` or `url` when the target BibTeX style may not render `eprint`/`archivePrefix`; this ensures the printed reference still contains the arXiv identifier. If a venue asks for access month/year, include it in a target-supported field such as `note`.
+For arXiv entries, verify the base arXiv identifier and submission/revision date from the arXiv page. Do not include version number or subject class by default. Keep `note={arXiv:...}` and `url={https://arxiv.org/abs/...}` so the printed reference still contains the arXiv identifier if the BibTeX style handles `journal` unusually. If a venue asks for access month/year, include it in a target-supported field such as `note`.
 
 ## Textbooks
 

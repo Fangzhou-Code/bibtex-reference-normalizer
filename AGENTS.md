@@ -91,7 +91,7 @@ Do not force ACM entries into IEEE style. ACM entries often retain full author l
 
 ### arXiv
 
-Before citing a preprint, check whether a formally published or peer-reviewed version exists. Prefer `@misc` or a target-template-supported `@preprint`. Use `eprint`, `archivePrefix={arXiv}`, URL, and DOI when available. The printed reference must contain the base official arXiv identifier, such as `arXiv:2403.00561` or an older identifier such as `arXiv:hep-th/9901001`; do not include version number or subject class unless the target venue explicitly asks for them. Keep the identifier contiguous without inserted spaces or extra punctuation. Do not use `journal={arXiv preprint:...}` unless the target venue specifically asks for it. If the BibTeX style may not render `eprint`/`archivePrefix`, add `note={arXiv:...}` or `url={https://arxiv.org/abs/...}`. If a venue or guide asks for access month/year, include it in a target-supported field such as `note`.
+Before citing a preprint, check whether a formally published or peer-reviewed version exists. Use `@ARTICLE` for arXiv entries in this project, with `journal={arXiv preprint:...}`, URL, DOI, and `note={arXiv:...}` when available. The printed reference must contain the base official arXiv identifier, such as `arXiv:2403.00561` or an older identifier such as `arXiv:hep-th/9901001`; do not include version number or subject class unless the target venue explicitly asks for them. Keep the identifier contiguous without inserted spaces or extra punctuation. If a venue or guide asks for access month/year, include it in a target-supported field such as `note`.
 
 ### Textbooks
 
@@ -188,7 +188,7 @@ note={early access, Feb. 24, 2026, doi: 10.1109/TVT.2026.3667726}
 
 ### arXiv
 
-引用预印本前，先检查是否已有正式发表或同行评议版本。优先使用 `@misc`，或目标模板支持的 `@preprint`。尽量使用 `eprint`、`archivePrefix={arXiv}`，并保留 URL 和 DOI。最终打印出的参考文献必须包含基础官方 arXiv identifier，例如 `arXiv:2403.00561`，旧格式如 `arXiv:hep-th/9901001`；默认不带版本号和学科分类，除非目标 venue 明确要求。identifier 中不要插入空格或额外标点。不建议使用 `journal={arXiv preprint:...}`，除非目标出版物明确要求。如果 BibTeX 样式不一定渲染 `eprint`/`archivePrefix`，添加 `note={arXiv:...}` 或 `url={https://arxiv.org/abs/...}`。如果 venue 或指南要求访问月份/年份，可放入 `note` 等目标模板支持的字段。
+引用预印本前，先检查是否已有正式发表或同行评议版本。本项目中 arXiv 条目使用 `@ARTICLE`，并写成 `journal={arXiv preprint:...}`；尽量保留 URL、DOI 和 `note={arXiv:...}`。最终打印出的参考文献必须包含基础官方 arXiv identifier，例如 `arXiv:2403.00561`，旧格式如 `arXiv:hep-th/9901001`；默认不带版本号和学科分类，除非目标 venue 明确要求。identifier 中不要插入空格或额外标点。如果 venue 或指南要求访问月份/年份，可放入 `note` 等目标模板支持的字段。
 
 ### 教材
 
