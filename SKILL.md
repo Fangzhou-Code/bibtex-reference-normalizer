@@ -278,14 +278,11 @@ Preferred format:
   journal={arXiv preprint:2403.00561},
   title={{M}ulti-task learning using uncertainty to weigh losses for heterogeneous face attribute estimation},
   year={2024},
-  month={Mar.},
-  note={arXiv:2403.00561},
-  url={https://arxiv.org/abs/2403.00561},
-  doi={10.48550/arXiv.2403.00561}
+  month={Mar.}
 }
 ```
 
-For arXiv entries, verify the base arXiv identifier and submission/revision date from the arXiv page. Do not include version number or subject class by default. Keep `note={arXiv:...}` and `url={https://arxiv.org/abs/...}` so the printed reference still contains the arXiv identifier if the BibTeX style handles `journal` unusually. If a venue asks for access month/year, include it in a target-supported field such as `note`.
+For arXiv entries, verify the base arXiv identifier and submission/revision date from the arXiv page. Do not include version number or subject class by default. Do not include `note`, `url`, or `doi` for arXiv entries unless the target venue explicitly requires them.
 
 ## Textbooks
 
