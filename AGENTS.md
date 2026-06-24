@@ -80,7 +80,7 @@ If verified, use `address` in this order:
 - United Arab Emirates: `address={City, U.A.E.}`
 - Other countries: `address={City, Country}`
 
-If the target style requests it, use `UK` and `United Arab Emirates` instead of `U.K.` and `U.A.E.`. Conference proceedings may retain the year after `Proc.` when that is the established form, such as `Proc. 2024 IEEE Int. Conf. ...`.
+If the target style requests it, use `UK` and `United Arab Emirates` instead of `U.K.` and `U.A.E.`. Remove conference years and ordinal edition numbers from `booktitle` by default, while preserving the society/publisher name, abbreviated conference name, and official acronym in parentheses.
 
 Do not invent locations for online, hybrid, or unverified conferences.
 
@@ -176,7 +176,7 @@ note={early access, Feb. 24, 2026, doi: 10.1109/TVT.2026.3667726}
 - 阿联酋：`address={City, U.A.E.}`
 - 其他国家：`address={City, Country}`
 
-如果目标格式要求，英国写 `UK`，阿联酋写 `United Arab Emirates`。会议 proceedings 如有既定格式，可以在 `Proc.` 后保留年份，例如 `Proc. 2024 IEEE Int. Conf. ...`。
+如果目标格式要求，英国写 `UK`，阿联酋写 `United Arab Emirates`。默认删除 `booktitle` 中的会议年份和第几届，只保留出版社/学会名称、缩写后的会议名称以及括号中的官方简称。
 
 对于线上、混合或无法核实地点的会议，不要编造地点。
 

@@ -177,10 +177,10 @@ Use IEEE-style abbreviated `booktitle` when appropriate:
 booktitle={Proc. IEEE Int. Conf. Blockchain (Blockchain)}
 ```
 
-Do not mechanically delete the conference year or edition number. Decide based on the official conference name, IEEE Xplore page, target template, and how reputable IEEE journals cite papers from that conference. The year may appear after `Proc.` when that is the established proceedings form, for example:
+Remove the conference year and ordinal edition number from `booktitle` by default. Keep the publisher/society name, abbreviated conference name, and official acronym in parentheses. Still verify the conference name from IEEE Xplore, ACM Digital Library, the official conference page, or reputable published references.
 
 ```bibtex
-booktitle={Proc. 2024 IEEE Int. Conf. Commun. Control Comput. Technol. Smart Grids (SmartGridComm)}
+booktitle={Proc. IEEE Int. Conf. Commun. Control Comput. Technol. Smart Grids (SmartGridComm)}
 ```
 
 If the conference month is reliable, add:
